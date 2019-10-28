@@ -1,20 +1,12 @@
-#include <Servo.h>
-Servo servo;
-int angle = 0;
-int sw = 5;
-void setup(){
-  servo.attach(9);
-  Serial.begin(9600);
-  pinMode(sw,INPUT_PULLUP);
-}
 
-void loop(){
-  if(digitalRead(sw) == LOW){
-    angle +=30;
-    if(angle >= 210){
-      angle = 0;
-      }
+void spin(){
+  for(angle = 0; angle <= 180; angle += 1){
       servo.write(angle);
-      delay(500);
-    }
+      delay(15);
+  }
+
+  for(angle = 180; angle >= 0; angle -= 1){
+    servo.write(angle);
+    delay(15);
+  }
 }
